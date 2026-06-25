@@ -97,3 +97,28 @@ button:active {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* --- GİRİŞ KUTULARI VE AÇILIR MENÜLER --- */
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    background-color: #2a2f38; /* Koyu gri arka plan */
+    border: 1px solid #3a414d; /* Hafif belirgin çerçeve */
+    color: #ffffff; /* Beyaz yazı */
+    font-size: 15px;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Kutuya tıklayınca (Odaklanınca) altın sarısı parlasın */
+input:focus, select:focus {
+    border-color: #f5c518;
+    box-shadow: 0 0 8px rgba(245, 197, 24, 0.2);
+}
+
+/* Tarih ve Saat seçicinin içindeki ikonları da beyaz yapalım */
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}

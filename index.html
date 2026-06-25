@@ -21,6 +21,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         h1 { color: #7aa2f7; }
+        
         button {
             background-color: #bb9af7;
             color: #1a1b26;
@@ -42,6 +43,7 @@
 <body>
 
     <div class="kutu">
+        
         <h1>Sistem Kontrolü 🚀</h1>
         <p>Aşağıdaki butona bastığında JavaScript gidip Java sunucundan veri çekecek.</p>
         
@@ -49,6 +51,19 @@
         
         <div id="sonuc"></div>
     </div>
+    <div class="form-alani">
+    <input type="text" id="musteriAd" placeholder="Adınız Soyadınız">
+    
+    <select id="islemTuru">
+        <option value="" disabled selected>Yapılacak İşlemi Seçin</option>
+        <option value="Sac Kesimi">Sadece Saç Kesimi</option>
+        <option value="Sakal Kesimi">Sadece Sakal Kesimi</option>
+        <option value="Sac Sakal">Saç + Sakal Kesimi</option>
+    </select>
+
+    <input type="date" id="randevuTarih">
+    <input type="time" id="randevuSaat">
+</div>  
 
     <script>
         async function javaVerisiniCek() {
