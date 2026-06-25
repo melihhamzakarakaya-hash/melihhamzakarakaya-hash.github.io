@@ -1,0 +1,35 @@
+/* Tüm sayfanın genel ayarları */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: hsl(210, 99%, 50%); /* Göz yormayan, temiz, çok açık bir gri */
+    color: #333333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* O meşhur butonumuzun tasarımı */
+button {
+    background-color: #2c3e50; /* Koyu lacivert, profesyonel bir renk */
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px; /* Köşeleri tatlıca yuvarlatır */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Butona hafif bir derinlik katar */
+    transition: 0.2s;
+}
+
+/* Butona tıklandığında hafif küçülme efekti (Mobil hissi verir) */
+button:active {
+    transform: scale(0.95);
+}
+
+/* Java'dan gelen mesajın yazdırılacağı alanın tasarımı */
+#mesajAlani {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60; /* Başarılı yeşili */
+}
