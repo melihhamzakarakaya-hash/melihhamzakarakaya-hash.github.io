@@ -1,35 +1,99 @@
-/* Tüm sayfanın genel ayarları */
+/* --- GENEL AYARLAR (Mobil Uygulama Hissi) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: hsl(210, 99%, 50%); /* Göz yormayan, temiz, çok açık bir gri */
-    color: #333333;
-    text-align: center;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121418; /* Lüks koyu antrasit arka plan */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
 }
 
-/* O meşhur butonumuzun tasarımı */
+/* --- ANA KONTEYNER (Telefonda Kart Gibi Duracak Kısım) --- */
+.container, body > div {
+    background-color: #1e2228;
+    width: 100%;
+    max-width: 400px; /* Tam bir mobil ekran genişliği */
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 1px solid #2a2f38;
+}
+
+/* --- BAŞLIKLAR VE METİNLER --- */
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #f5c518; /* Premium Altın Sarısı */
+    letter-spacing: 1px;
+}
+
+p {
+    color: #a0a5b1;
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* --- PROFESYONEL BUTON TASARIMI --- */
 button {
-    background-color: #2c3e50; /* Koyu lacivert, profesyonel bir renk */
-    color: white;
+    background: linear-gradient(135deg, #f5c518 0%, #d4af37 100%); /* Altın sarısı degrade */
+    color: #121418; /* Yazı rengi koyu (kontrast için) */
     border: none;
-    padding: 15px 32px;
+    padding: 16px 24px;
+    width: 100%;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px; /* Köşeleri tatlıca yuvarlatır */
+    font-weight: 700;
+    border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Butona hafif bir derinlik katar */
-    transition: 0.2s;
+    box-shadow: 0 8px 15px rgba(245, 197, 24, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Butona tıklandığında hafif küçülme efekti (Mobil hissi verir) */
+/* Butonun üzerine gelince (Hover) */
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(245, 197, 24, 0.4);
+    background: linear-gradient(135deg, #ffd700 0%, #e6c200 100%);
+}
+
+/* Butona basılırken (Active) */
 button:active {
-    transform: scale(0.95);
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(245, 197, 24, 0.3);
 }
 
-/* Java'dan gelen mesajın yazdırılacağı alanın tasarımı */
+/* --- JAVA'DAN GELEN MESAJIN GÖRÜNÜMÜ --- */
 #mesajAlani {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #27ae60; /* Başarılı yeşili */
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2ecc71; /* Zümrüt Yeşili (Başarılı İşlem) */
+    background-color: rgba(46, 204, 113, 0.1);
+    border: 1px dashed #2ecc71;
+    display: none; /* İlk başta gizli, JavaScript ile içi dolunca açılır */
+}
+
+/* Ekranda mesaj varsa göster */
+#mesajAlani:not(:empty) {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Ufak bir animasyon */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
