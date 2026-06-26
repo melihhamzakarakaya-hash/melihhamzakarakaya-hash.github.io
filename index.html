@@ -64,7 +64,7 @@
 
     <input type="date" id="randevuTarih">
     <input type="time" id="randevuSaat">
-    <button > Randevu al</button> 
+    <button onclick="randevuKaydet()"> Randevu al</button> 
 </div>  
 <script>
 // Altın sarısı butonuna tıklandığında çalışacak fonksiyon
@@ -119,6 +119,47 @@ document.getElementById("randevuButon").addEventListener("click", function() {
         alert("Arka plan sunucusuna bağlanılamadı!");
     });
 });
+// Randevu oluşturma isteği
+function randevuKaydet() {
+    const veri = {
+        musteriAd: document.getElementById("musteriAd").value,
+        islemTuru: document.getElementById("islemTuru").value,
+        randevuTarih: document.getElementById("randevuTarih").value,
+        randevuSaat: document.getElementById("randevuSaat").value
+    };
+
+    fetch("http://localhost:8080/api/randevu-olustur", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(veri)
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.mesaj); // "Randevu veritabanına başarıyla eklendi kral!"
+        randevulariGetir(); // Kaydeder kaydetmez listeyi güncelle
+    });
+}
+// Randevu oluşturma isteği
+function randevuKaydet() {
+    const veri = {
+        musteriAd: document.getElementById("musteriAd").value,
+        islemTuru: document.getElementById("islemTuru").value,
+        randevuTarih: document.getElementById("randevuTarih").value,
+        randevuSaat: document.getElementById("randevuSaat").value
+    };
+
+    fetch("http://localhost:8080/api/randevu-olustur", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(veri)
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.mesaj); // "Randevu veritabanına başarıyla eklendi kral!"
+        randevulariGetir(); // Kaydeder kaydetmez listeyi güncelle
+    });
+}<ul id="randevuListesi">
+    </ul>
 </script>
 </body>
 </html>
