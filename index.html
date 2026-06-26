@@ -66,28 +66,59 @@
     <input type="time" id="randevuSaat">
     <button > Randevu al</button> 
 </div>  
+<script>
+// Altın sarısı butonuna tıklandığında çalışacak fonksiyon
+document.getElementById("randevuButon").addEventListener("click", function() {
+    
+    // 1. Kutulardaki bilgileri JavaScript değişkenlerine alıyoruz
+    const musteriAd = document.getElementById("musteriAd").value;
+    const islemTuru = document.getElementById("islemTuru").value;
+    const randevuTarih = document.getElementById("randevuTarih").value;
+    const randevuSaat = document.getElementById("randevuSaat").value;
 
-    <script>
-        async function javaVerisiniCek() {
-            const sonucDiv = document.getElementById('sonuc');
-            sonucDiv.innerText = "İstek gönderiliyor...";
+    // Ufak bir kontrol: Boş alan bırakılmasın
+    if(!musteriAd || !islemTuru || !randevuTarih || !randevuSaat) {
+        alert("Lütfen tüm alanları doldurun kral!");
+        return;
+    }
 
-            try {
-                // Java sunucumuz yerelde çalıştığı için localhost adresine JavaScript 'fetch' atıyoruz
-                const response = await fetch('https://randevu-backend-a7yd.onrender.com/api/mesaj');
-                
-                // Gelen veriyi JSON formatına çeviriyoruz
-                const data = await response.json();
-                
-                // Ekrana Java'dan gelen içeriği basıyoruz
-                sonucDiv.innerText = data.icerik;
-            } catch (error) {
-                sonucDiv.style.color = "#f7768e";
-                sonucDiv.innerText = "Hata: Java sunucusu kapalı veya bağlanılamadı!";
-                console.error("Bağlantı hatası:", error);
-            }
+    // 2. Java'nın (Randevu.java) anlayacağı isimlerle bir paket (JSON) oluşturuyoruz
+    const randevuPaketi = {
+        musteriAd: musteriAd,
+        islemTuru: islemTuru,
+        randevuTarih: randevuTarih,
+        randevuSaat: randevuSaat
+    };
+
+    // 3. Paketi Java arka planına (API) fırlatıyoruz (FETCH)
+    // Bilgisayarda test ederken: http://localhost:8080/api/randevu-olustur
+    fetch("http://localhost:8080/api/randevu-olustur", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(randevuPaketi) // Paketi yazı diline çevirip yolluyoruz
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Java'dan gelen cevabı ekrana basıyoruz
+        if(data.durum === "Basarili") {
+            alert(data.mesaj); // "Randevunuz veritabanına başarıyla kaydedildi kral!" yazar
+            
+            // Formu temizle
+            document.getElementById("musteriAd").value = "";
+            document.getElementById("islemTuru").value = "";
+            document.getElementById("randevuTarih").value = "";
+            document.getElementById("randevuSaat").value = "";
+        } else {
+            alert("Bir hata oluştu kankam.");
         }
-    </script>
-
+    })
+    .catch(error => {
+        console.error("Hata:", error);
+        alert("Arka plan sunucusuna bağlanılamadı!");
+    });
+});
+</script>
 </body>
 </html>
